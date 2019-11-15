@@ -1,0 +1,47 @@
+{
+  "version": "1.0",
+  "defaultProvider": "cdnjs",
+  "libraries": [
+    {
+      "library": "bootstrap-datepicker@1.9.0",
+      "destination": "wwwroot/lib/bootstrap-datepicker/"
+    },
+    {
+      "library": "jqueryui@1.12.1",
+      "destination": "wwwroot/jqueryui/"
+    },
+    {
+      "library": "timepicker@1.3.5",
+      "destination": "wwwroot/timepicker/"
+    },
+    {
+      "library": "datatable@2.0.1",
+      "destination": "wwwroot/css/datatable/"
+    }
+  ,
+{
+  "provider": "cdnjs",
+  "library": "datatable@2.0.1",
+  "destination": "wwwroot/datatable/",
+  "files": [
+    "js/datatable.min.js",
+    "css/datatable-bootstrap.css",
+    "css/datatable-bootstrap.min.css",
+    "css/datatable.css",
+    "css/datatable.min.css",
+    "img/sort_asc.png",
+    "img/sort_both.png",
+    "img/sort_desc.png",
+    "js/datatable.jquery.js",
+    "js/datatable.jquery.min.js",
+    "js/datatable.js"
+  ]
+}
+,
+{
+  "provider": "cdnjs",
+  "library": "datatable@2.0.1",
+  "destination": "wwwroot/datatable/"
+}
+]
+}

@@ -1,0 +1,107 @@
+﻿@using Microsoft.AspNetCore.Http
+@using DAL.Extensions
+@using DAL.Utility
+@inject IHttpContextAccessor HttpContextAccessor
+
+
+<br /><br /><br />
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Falcon Management</title>
+    <environment include="Development">
+        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
+        <link rel="stylesheet" href="~/css/site.css" />
+        <link rel="stylesheet" href="~/css/jquery-ui.css" />
+        <link rel="stylesheet" href="~/css/jquery.timepicker.css" />
+        <link rel="stylesheet" href="~/css/jquery-ui.css" />
+        <link rel="stylesheet" href="~/css/jquery.timepicker.css" />
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
+        
+    </environment>
+    <environment exclude="Development">
+        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
+        <link rel="stylesheet" href="~/css/site.css" />
+        <link rel="stylesheet" href="~/css/jquery-ui.css" />
+        <link rel="stylesheet" href="~/css/jquery.timepicker.css" />
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
+        
+    </environment>
+</head>
+<body>
+    <nav class="navbar navbar-expand-md navbar-light bg-success fixed-top">
+        <a class="navbar-brand" href="#"><img src="~/Images/123.jpg" width="60" style="display: inline-block;">Falcon Management</a>
+        <div class="collapse navbar-collapse">
+            <ul class="navbar-nav mr-auto">
+
+                <li class="nav-item"><a class="nav-link" asp-controller="Home" asp-action="Index">Home</a></li>
+                @if (User.IsInRole(SD.Traineeenduser))
+                {
+                    <li class="nav-item"><a class="nav-link" asp-area="Admin" asp-controller="TrainingHistory" asp-action="Index">Training History</a></li>
+                }
+                @if (User.IsInRole(SD.MedicalEndUser))
+                {
+                    <li class="nav-item"><a class="nav-link" asp-area="Admin" asp-controller="MedicalData" asp-action="Index">Medical History</a></li>
+
+                }
+
+
+                @if (User.IsInRole(SD.AdminEndUser))
+                {
+                    <li class="nav-item"><a class="nav-link" asp-area="Admin" asp-controller="TrainingHistory" asp-action="Index">Training History</a></li>
+                    <li class="nav-item"><a class="nav-link" asp-area="Admin" asp-controller="MedicalData" asp-action="Index">Medical History</a></li>
+                    <li class="nav-item"><a class="nav-link" asp-area="Admin" asp-controller="AdminUser" asp-action="#">Training History</a></li>
+                    <li class="nav-item"><a class="nav-link" asp-area="Admin" asp-controller="AdminUser" asp-action="Index">User</a></li>
+
+                    <li class="nav-item"><a class="nav-link" asp-area="Admin" asp-controller="Falcon" asp-action="Index">Falcon</a></li>
+                    <li class="nav-item dropdown">
+                        <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Settings</a>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" asp-area="Admin" asp-controller="Setting" asp-action="Colors">Colors</a>
+                            <a class="dropdown-item" asp-area="Admin" asp-controller="Setting" asp-action="Country">Countries</a>
+                            <a class="dropdown-item" asp-area="Admin" asp-controller="Setting" asp-action="Status">Status</a>
+                            <a class="dropdown-item" asp-area="Admin" asp-controller="Setting" asp-action="GetDisease">Disease</a>
+                            <a class="dropdown-item" asp-area="Admin" asp-controller="Setting" asp-action="GetScientificNames">Scientific Name</a>
+                            <a class="dropdown-item" asp-area="Admin" asp-controller="Setting" asp-action="GetSeasons">Seasons</a>
+                            <a class="dropdown-item" asp-area="Admin" asp-controller="Setting" asp-action="Species">Species</a>
+
+                        </div>
+                    </li>
+                }
+            </ul>
+        </div>
+        <div>
+            <partial name="_LoginPartial" />
+        </div>
+    </nav>
+
+    <partial name="_CookieConsentPartial" />
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>&copy; 2019 - Falcon Management</p>
+        </footer>
+    </div>
+    <environment include="Development">
+        <script src="~/lib/jquery/dist/jquery.js"></script>
+        <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
+        <script src="~/js/site.js" asp-append-version="true"></script>
+        <script src="~/js/jquery-ui.js" asp-append-version="true"></script>
+        <script src="~/js/jquery.timepicker.js" asp-append-version="true"></script>
+       <script src="~/css/jquery.timepicker.js" asp-append-version="true"></script>
+    </environment>
+    <environment exclude="Development">
+        <script src="~/lib/jquery/dist/jquery.js"></script>
+        <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
+        <script src="~/js/site.js" asp-append-version="true"></script>
+        <script src="~/js/jquery-ui.js" asp-append-version="true"></script>
+        <script src="~/js/jquery.timepicker.js" asp-append-version="true"></script>
+        <script src="~/css/jquery.timepicker.js" asp-append-version="true"></script>
+    </environment>
+   
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

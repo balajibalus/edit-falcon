@@ -1,0 +1,125 @@
+﻿@model DAL.Models.TrainingHistory
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h4>TrainingHistory</h4>
+<hr />
+
+<form asp-action="Edit" method="post">
+    <div class="p-4 border rounded">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <input type="hidden" asp-for="Id" />
+        <div class="form-group row">
+            <div class="col-3">
+                <label asp-for="RingNumber" class="control-label"></label>
+            </div>
+            <div class="col-4">
+                <input asp-for="RingNumber" class="form-control" />
+            </div>
+            <span asp-validation-for="RingNumber" class="text-danger"></span>
+        </div>
+        <div class="form-group row">
+            <div class="col-3">
+                <label asp-for="Weight" class="control-label"></label>
+            </div>
+            <div class="col-4">
+                <input asp-for="Weight" class="form-control" />
+                <span asp-validation-for="Weight" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-3">
+                Airplane Training Speed(Per Hour)
+            </div>
+            <div class="col-4">
+                <input asp-for="AirplaneTrainingSpeed" class="form-control" />
+            </div>
+            <span asp-validation-for="AirplaneTrainingSpeed" class="text-danger"></span>
+        </div>
+        <div class="form-group row">
+            <div class="col-3">
+                Airplane Training Distane(K.M)
+            </div>
+            <div class="col-4">
+                <input asp-for="AirplaneTrainingDistane" class="form-control" />
+            </div>
+            <span asp-validation-for="AirplaneTrainingDistane" class="text-danger"></span>
+        </div>
+        <div class="form-group row">
+            <div class="col-3">
+                Airplane Training Time
+            </div>
+            <div class="col-4">
+                <input asp-for="AirplaneTrainingTime"  class="form-control" />
+            </div>
+            <span asp-validation-for="AirplaneTrainingTime" class="text-danger"></span>
+        </div>
+        <div class="form-group row">
+            <div class="col-3">
+                Hubara Training
+            </div>
+            <div class="col-4">
+                <input asp-for="HubaraTraining" class="form-control" />
+            </div>
+            <span asp-validation-for="HubaraTraining" class="text-danger"></span>
+        </div>
+        <div class="form-group row">
+            <div class="col-3">
+                Hubara Humality
+            </div>
+            <div class="col-4">
+                <input asp-for="HubaraHumality" class="form-control" />
+            </div>
+            <span asp-validation-for="HubaraHumality" class="text-danger"></span>
+        </div>
+        <div class="form-group row">
+            <div class="col-3">
+                <label asp-for="Timinings" class="control-label"></label>
+            </div>
+            <div class="col-4">
+                <input asp-for="Timinings" type="text" value="" class="timepicker form-control" />
+            </div>
+            <span asp-validation-for="Timinings" class="text-danger"></span>
+        </div>
+        <div class="form-group row">
+            <div class="col-3">
+                <label asp-for="Data" class="control-label"></label>
+            </div>
+            <div class="col-4">
+                <textarea asp-for="Data" class="form-control"></textarea>
+            </div>
+            <span asp-validation-for="Data" class="text-danger"></span>
+        </div>
+
+        <div class="form-group row">
+            <div class="col-3"></div><div class="col-4">
+    <input type="submit" class="btn btn-primary" value="Update" />
+    <a asp-action="Index" class="btn btn-success">Cancel</a>
+</div>
+        </div>
+        <span>@ViewBag.Message</span>
+    </div>
+</form>
+
+@section Scripts{
+    @{ await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <script>
+
+        $('.timepicker').timepicker({
+            timeFormat: 'h:mm p',
+            interval: 30,
+            minTime: '10',
+            maxTime: '3:00pm',
+            startTime: '10:00',
+            dynamic: true,
+            dropdown: true,
+            scrollbar: true
+        });
+
+
+
+    </script>
+}
+

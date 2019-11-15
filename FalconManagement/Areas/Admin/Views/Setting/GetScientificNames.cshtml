@@ -1,0 +1,93 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Color</title>
+    <link href="~/lib/datatables/css/dataTables.bootstrap4.min.css" type="text/css" rel="stylesheet" />
+    <script src="~/lib/datatables/js/jquery.dataTables.min.js"></script>
+    <script src="~/lib/datatables/js/dataTables.bootstrap4.min.js"></script>
+    <script src="~/lib/jquery/jquery.min.js"></script>
+
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $.ajax({
+                url: '/Admin/Setting/NameData',
+                method: 'get',
+                dataType: 'json',
+                success: function (data) {
+                    $('#colors').dataTable({
+                        data: data,
+
+                        columns: [
+
+                            {
+                                'data': 'name'
+                            }
+                            ,
+                            {
+                                data: 'id', name: 'id', "render": function (data) {
+                                    return "<a class='btn btn-default btn-sm badge-secondary alert-success ' style='margin-left:5px' href='/Admin/Setting/EditName/" + data + "'><i class='fas fa-edit'></i> Edit</a><a class='btn btn-default btn-sm badge-info alert-info' style='margin-left:5px' href='/Admin/Setting/NameDetails/" + data + "'><i class='far fa-list-alt'></i> Details</a><a class='btn btn-danger btn-sm ' style='margin-left:5px' href='/Admin/Setting/NameDelete/" + data + "'><i class='fa fa-trash'></i> Delete</a>";
+
+                                }
+                            }
+                        ]
+                    });
+                }
+            });
+        });
+        function PopupForm(url) {
+            var formDiv = $('<div/>');
+            $.get(url)
+                .done(function (response) {
+                    formDiv.html(response);
+                    Popup = formDiv.dialog({
+                        autoOpen: true,
+                        resizable: false,
+                        title: 'Add Scientific Name',
+                        width: 700,
+                        height: 500,
+                        close: function () {
+                            Popup.dialog('destory').remove();
+                        }
+                    });
+                });
+        }
+    </script>
+</head>
+<body style="font-family:Arial">
+    <div class="border-10">
+        <div class="col-6">
+            <a class="btn btn-info" onclick="PopupForm('@Url.Action("AddScientificNames","Setting")')"><i class="fas fa-plus"></i>&nbsp;Add</a>
+        </div>
+        <br />
+
+        <div class="alert-light">
+            @*//<div style="border:1px solid black;padding:3px;width:1200px">//*@
+            <table id="colors" class="table table-striped table-bordered" style="width:100%">
+                <thead>
+                    <tr>
+
+                        <th>Scientific Name</th>
+                    </tr>
+
+                </thead>
+                <tfoot>
+                    <tr>
+
+                        <th>Scientific Name</th>
+                    </tr>
+
+                </tfoot>
+            </table>
+        </div>
+    </div>
+
+</body>
+</html>
+
+@section Scripts{
+    <script src="~/lib/datatables/js/jquery.dataTables.min.js"></script>
+    <script src="~/lib/datatables/js/dataTables.bootstrap4.min.js"></script>
+
+}

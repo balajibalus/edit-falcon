@@ -1,0 +1,23 @@
+﻿@model DAL.Models.Country
+@{
+    ViewData["Title"] = "CountryDetails";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<br /><br />
+<h2 class="text-info"> Country Details</h2>
+<div class="p-4 border rounded">
+    <input type="hidden" asp-for="Id" />
+    <div class="form-group row">
+        <div class="col-2">
+            <label asp-for="Name"></label>
+        </div>
+        <div class="col-5">
+            <input asp-for="Name" disabled class="form-control" />
+        </div>
+    </div>
+    <br />
+    <div class="form-group">
+        <a asp-action="EditCountry" asp-route-id="@Model.Id" class="btn btn-primary">Edit</a>
+        <a asp-action="Country" class="btn btn-success">Back to List</a>
+    </div>
+</div>

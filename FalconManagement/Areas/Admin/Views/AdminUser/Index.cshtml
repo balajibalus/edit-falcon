@@ -1,0 +1,57 @@
+﻿@model List<DAL.Models.ApplicationUser>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<br /><br />
+<div>
+    <div class="row">
+        <div class="col-6">
+            <h2 class="text-info"> User List</h2>
+        </div>
+
+        <div class="col-6 text-right">
+            <a asp-area="Identity" asp-page="/Account/Register" class="btn btn-info"><i class="fas fa-plus"></i>&nbsp;Add New User</a>
+        </div>
+    </div>
+    <table class="table table-striped border">
+        <tr class="table-info">
+            <th>
+                First Name
+            </th>
+            <th>Last Name</th>
+            <th>Phone Number</th>
+            <th>Disabled</th>
+            <th></th>
+            <th></th>
+        </tr>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(m => item.FirstName)
+                </td>
+                <td>
+                    @Html.DisplayFor(m => item.LastName)
+                </td>
+                <td>
+                    @Html.DisplayFor(m => item.PhoneNumber)
+                </td>
+                <td>
+                    @if (item.LockoutEnd != null && item.LockoutEnd > DateTime.Now)
+                    {
+                        <label>Disabled</label>
+                    }
+                </td>
+                <td>
+                    @if (item.LockoutEnd == null || item.LockoutEnd < DateTime.Now)
+                    {
+                        <i class="fas fa-edit">@Html.ActionLink("Edit", "Edit", new { id = @item.Id })</i>
+                        <i class="fas fa-trash-alt">@Html.ActionLink("Delete", "Delete", new { id = @item.Id })</i>
+                    }
+                </td>
+                <td></td>
+            </tr>
+        }
+    </table>
+</div>

@@ -1,0 +1,24 @@
+﻿@model DAL.Models.Seasons
+@{
+    ViewData["Title"] = "MakeDefault";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<br /><br /><br />
+<h1>MakeDefault</h1>
+
+<h2 class="text-info">Default</h2>
+<div class="p-4 border rounded">
+    <div class="form-group row">
+        <div class="col-2">
+            <label asp-for="Name"></label>
+        </div>
+        <div class="col-5">
+            <input asp-for="Name" disabled class="form-control" />
+        </div>
+    </div>
+    <br />
+    <div class="form-group">
+        <a asp-action="MakeDefault" asp-route-id="@Model.Id" class="btn btn-primary">Default</a>
+        <a asp-action="GetSeasons" class="btn btn-success">Back to List</a>
+    </div>
+</div>

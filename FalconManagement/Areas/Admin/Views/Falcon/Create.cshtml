@@ -1,0 +1,160 @@
+﻿@model DAL.Models.ViewModel.FalconVM
+@using DAL.Extensions
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<br />
+<h2 class="text-info">Add Falcon</h2>
+<form method="post" asp-action="create" enctype="multipart/form-data">
+    <div class="p-4 border rounded">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+        <div class="form-group row">
+            <div class="col-2">
+                Ring's Number *
+            </div>
+            <div class="col-3">
+                <input asp-for="NewFalcon.RingNumber" class="form-control" />
+            </div>
+            <span asp-validation-for="NewFalcon.RingNumber" class="text-danger"></span>
+        </div>
+        <div class="form-group row">
+            <div class="col-2">
+                Chip Number *
+            </div>
+            <div class="col-3">
+                <input asp-for="NewFalcon.ChipNumber" class="form-control" />
+            </div>
+            <span asp-validation-for="NewFalcon.ChipNumber" class="text-danger"></span>
+        </div>
+
+        <div class="form-group row">
+            <div class="col-2">
+                Falcon Species *
+            </div>
+            <div class="col-3">
+                <select asp-for="@Model.NewFalcon.FalconTypeId" asp-items="Model.Species.ToSelectListItem(Model.NewFalcon.FalconTypeId)" class="form-control"></select>
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-2">
+                Scientific Name *
+            </div>
+            <div class="col-3">
+                <select asp-for="@Model.NewFalcon.NameTypeId" asp-items="Model.ScientificNames.ToSelectListItemString(Model.NewFalcon.NameTypeId)" class="form-control"></select>
+
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-2">
+                Gender *
+            </div>
+            <div class="col-3">
+                <select asp-for="@Model.NewFalcon.GenderId" asp-items="Model.Gender.ToSelectListItemGender(Model.NewFalcon.GenderId)" class="form-control"></select>
+
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-2">
+                Status*
+            </div>
+            <div class="col-3">
+                <select asp-for="@Model.NewFalcon.StatusId" asp-items="Model.Status.ToSelectListItemStatus(Model.NewFalcon.StatusId)" class="form-control"></select>
+
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-2">
+                Color *
+            </div>
+            <div class="col-3">
+                <select asp-for="@Model.NewFalcon.ColorId" asp-items="Model.Colors.ToSelectListItemColor(Model.NewFalcon.ColorId)" class="form-control"></select>
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-2">
+                Width
+            </div>
+            <div class="col-3">
+                <input asp-for="NewFalcon.Width" class="form-control" />
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-2">
+                Length
+            </div>
+            <div class="col-3">
+                <input asp-for="NewFalcon.Length" class="form-control" />
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-2">
+                Weight
+            </div>
+            <div class="col-3">
+                <input asp-for="NewFalcon.Weight" class="form-control" />
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-2">
+                Season
+            </div>
+            <div class="col-3">
+                <select asp-for="@Model.NewFalcon.SeasonId" asp-items="Model.Seasons.ToSelectListItemSeason(Model.NewFalcon.SeasonId)" class="form-control"></select>
+
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-2">
+                Gifted To *
+            </div>
+            <div class="col-3">
+                <input asp-for="NewFalcon.GiftedTo" class="form-control" />
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-2">
+                <label asp-for="NewFalcon.FrontImage"></label>
+            </div>
+            <div class="col-3">
+                <input type="file" asp-for="NewFalcon.FrontImg" class="form-control" />
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-2">
+                <label asp-for="NewFalcon.BackImage"></label>
+            </div>
+            <div class="col-3">
+                <input type="file" asp-for="NewFalcon.BackImg" class="form-control" />
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <div class="col-2">
+                <label asp-for="NewFalcon.Notes"></label>
+            </div>
+            <div class="col-3">
+                <textarea asp-for="NewFalcon.Notes" class="form-control"></textarea>
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-2">
+                <label asp-for="NewFalcon.Documents"></label>
+            </div>
+            <div class="col-3">
+                <input type="file" asp-for="NewFalcon.DocumentImg" class="form-control" />
+            </div>
+        </div>
+
+        <br />
+        <div class="form-group">
+            <input type="submit" class="btn btn-primary" value="Save" />
+            <a asp-action="Index" class="btn btn-success">Cancel</a>
+        </div>
+    </div>
+
+</form>
+@section Scripts{
+    @{ await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
