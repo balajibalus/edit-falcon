@@ -32,12 +32,13 @@
                             }
                             ,
                             {
-                                'data': 'visitDate', 'type': 'datetime',
-                                'def': function () { return new Date(); },
-                                'format': 'M/D/YYYY',
-                                'fieldInfo': 'US style m/d/y format'
-                            }
-                            ,
+                                'data': 'visitDate', "render": function (data) {
+                                    var date = new Date(data);
+                                    var month = date.getMonth() + 1;
+                                    return (month.toString().length > 1 ? month : "0" + month) + "/" + date.getDate() + "/" + date.getFullYear();
+                                }},
+                            
+                            
                             {
                                 'data': 'disease.name'
                             }
@@ -48,7 +49,7 @@
                             ,
                             {
                                 data: 'id', name: 'id', "render": function (data) {
-                                    return "<a class='btn btn-default btn-sm badge-secondary alert-success ' style='margin-left:5px' href='/Admin/MedicalData/Edit/" + data + "'><i class='fas fa-edit'></i> Edit</a><a class='btn btn-default btn-sm badge-info alert-info' style='margin-left:5px' href='/Admin/MedicalData/Details" + data + "'><i class='far fa-list-alt'></i> Details</a>";
+                                    return "<a class='btn btn-default btn-sm badge-secondary alert-success ' style='margin-left:5px' href='/Admin/MedicalData/Edit/" + data + "'><i class='fas fa-edit'></i> Edit</a><a class='btn btn-default btn-sm badge-info alert-info' style='margin-left:5px' href='/Admin/MedicalData/Details/" + data + "'><i class='far fa-list-alt'></i> Details</a>";
 
                                 }
                             }

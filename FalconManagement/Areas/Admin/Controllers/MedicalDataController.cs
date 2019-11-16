@@ -103,6 +103,10 @@ namespace FalconManagement.Areas.Admin.Controllers
                         MedicalDataVM.MedicalData.Attachment = @"\" + SD.ImageFolder + @"\" + fileName + extenstion;
                     }
                 }
+            else
+            {
+                MedicalDataVM.MedicalData.Attachment = MedicalDataVM.MedicalData.Attachment;
+            }
                 _db.EditMedicalDate(MedicalDataVM.MedicalData);
             return RedirectToAction(nameof(Index));
         }
