@@ -27,7 +27,7 @@
                             ,
                             {
                                 data: 'id', name: 'id', "render": function (data) {
-                                    return "<a class='btn btn-default btn-sm ' style='margin-left:5px' href='/Admin/Setting/Edit/" + data + "'><i class='fas fa-pencil'></i> Edit</a><a class='btn btn-danger btn-sm ' style='margin-left:5px' href='/Admin/Setting/Deleted/" + data + "'><i class='fa fa-trash'></i> Delete</a>";
+                                    return "<a class='btn btn-default btn-sm badge-info alert-info' style='margin-left:5px' href='/Admin/Setting/Details/" + data + "'><i class='far fa-list-alt'></i> Details</a><a class='btn btn-default btn-sm badge-secondary alert-success ' style='margin-left:5px' href='/Admin/Setting/Edit/" + data + "'><i class='fas fa-edit'></i> Edit</a><a class='btn btn-danger btn-sm ' style='margin-left:5px' href='/Admin/Setting/Deleted/" + data + "'><i class='fa fa-trash'></i> Delete</a>";
 
                                 }
                             }

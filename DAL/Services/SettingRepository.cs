@@ -17,25 +17,21 @@ namespace DAL.Services
         }
 
         #region Colors
-        
+
         public List<Colors> GetColors()
         {
-            
-            return  _db.Colors.ToList();
+
+            return _db.Colors.ToList();
         }
         public Colors GetColor(int id)
         {
             return _db.Colors.Where(c => c.Id == id).FirstOrDefault();
-               
+
         }
 
         public string AddColor(Colors colors)
         {
-            if (_db.Colors.Any(a => a.Name == colors.Name))
-            {
-                var error = "already exists";
-                return error;
-            }
+
             _db.Colors.Add(colors);
             _db.SaveChanges();
             var sucess = "Sucess";
@@ -47,7 +43,7 @@ namespace DAL.Services
         {
             var newColor = _db.Colors.Where(c => c.Id == colors.Id).FirstOrDefault();
             newColor.Name = colors.Name;
-            
+
             _db.SaveChanges();
             var sucess = "Sucess";
             return sucess;
@@ -73,11 +69,7 @@ namespace DAL.Services
 
         public string AddCountry(Country country)
         {
-            if (_db.Countries.Any(a => a.Name == country.Name))
-            {
-                var error = "already exists";
-                return error;
-            }
+
             _db.Countries.Add(country);
             _db.SaveChanges();
             var sucess = "Sucess";
@@ -89,8 +81,8 @@ namespace DAL.Services
             newCountry.Name = country.Name;
 
             _db.SaveChanges();
-           
-           
+
+
         }
         public void DeleteCountry(Country country)
         {
@@ -111,11 +103,7 @@ namespace DAL.Services
         }
         public string AddName(ScientificName scientific)
         {
-            if (_db.ScientificNames.Any(a => a.Name == scientific.Name))
-            {
-                var error = "already exists";
-                return error;
-            }
+
             scientific.CreatedOn = DateTime.Now;
             scientific.UpdatedOn = DateTime.Now;
             _db.ScientificNames.Add(scientific);
@@ -146,15 +134,10 @@ namespace DAL.Services
         }
         public Seasons GetSeason(int id)
         {
-           return _db.Seasons.Where(s => s.Id == id).FirstOrDefault();
+            return _db.Seasons.Where(s => s.Id == id).FirstOrDefault();
         }
         public string AddSeasons(Seasons seasons)
         {
-            if (_db.Seasons.Any(a => a.Name == seasons.Name))
-            {
-                var error = "already exists";
-                return error;
-            }
 
             seasons.CreatedOn = DateTime.Now;
             seasons.UpdatedOn = DateTime.Now;
@@ -163,17 +146,17 @@ namespace DAL.Services
             var sucess = "Sucess";
             return sucess;
         }
-      
+
         public void EditSeason(Seasons seasons)
         {
-          
-                var newSeason = _db.Seasons.Where(c => c.Id == seasons.Id).FirstOrDefault();
+
+            var newSeason = _db.Seasons.Where(c => c.Id == seasons.Id).FirstOrDefault();
             newSeason.Name = seasons.Name;
             newSeason.UpdatedOn = DateTime.Now;
 
-                _db.SaveChanges();
-               
-            
+            _db.SaveChanges();
+
+
         }
 
         public void DeleteSeason(Seasons seasons)
@@ -187,16 +170,16 @@ namespace DAL.Services
             var ss = _db.Seasons.Where(a => a.Id == seasons.Id).FirstOrDefault();
             ss.IsDefault = true;
             _db.SaveChanges();
-            
+
 
             var details = _db.Seasons.Where(a => a.Id != seasons.Id).ToList();
             foreach (var item in details)
             {
                 item.IsDefault = false;
                 _db.SaveChanges();
-               
+
             }
-            
+
         }
         #endregion
 
@@ -226,7 +209,7 @@ namespace DAL.Services
         }
         public void EditSpecie(Species species)
         {
-            var newSpecie = _db.Species.Where(c => c.Id ==species.Id ).FirstOrDefault();
+            var newSpecie = _db.Species.Where(c => c.Id == species.Id).FirstOrDefault();
             newSpecie.Name = species.Name;
             newSpecie.UpdatedOn = DateTime.Now;
 
@@ -251,11 +234,7 @@ namespace DAL.Services
         }
         public string AddStatus(Status status)
         {
-            if (_db.Statuses.Any(a => a.Name == status.Name))
-            {
-                var error = "already exists";
-                return error;
-            }
+
             _db.Statuses.Add(status);
             _db.SaveChanges();
             var sucess = "Sucess";
@@ -265,7 +244,7 @@ namespace DAL.Services
         {
             var newStatus = _db.Statuses.Where(c => c.Id == status.Id).FirstOrDefault();
             newStatus.Name = status.Name;
-           
+
 
             _db.SaveChanges();
         }
@@ -288,19 +267,14 @@ namespace DAL.Services
         }
         public string AddDisease(Disease disease)
         {
-            if (_db.Diseases.Any(a => a.Name == disease.Name))
-            {
-                var errormsg = "already exists";
-                return errormsg;
-            }
-            if (disease != null)
-            {
-                _db.Diseases.Add(disease);
-                _db.SaveChanges();
 
-            }
-            var error = "Error";
-            return error;
+
+            _db.Diseases.Add(disease);
+            _db.SaveChanges();
+            var sucess = "Sucess";
+            return sucess;
+
+
 
         }
         public void EditDisease(Disease disease)
@@ -314,7 +288,7 @@ namespace DAL.Services
         }
 
 
-       
+
 
         public void DeleteDisease(Disease disease)
         {

@@ -1,66 +1,141 @@
-﻿@model IEnumerable<DAL.Models.MedicalData>
-@using DAL.Utility
-@{
-    ViewData["Title"] = "Index";
-    Layout = "~/Views/Shared/_Layout.cshtml";
-}
-<br /><br />
-<div class="row">
-    <div class="col-6">
-        <h2 class="text-info"> Medical Data List</h2>
-    </div>
-    @if (User.IsInRole(SD.MedicalEndUser))
-    {
-        <div class="col-6 text-right">
-            <a asp-action="Create" class="btn btn-info"><i class="fas fa-plus"></i>&nbsp; Add Medical Data </a>
-        </div>
-    }
-</div>
-<br />
-<div>
-    <table class="table table-striped border">
-        <tr class="table-info">
-            <th>
-                Ring Number
-            </th>
-            <th>
-                Visit Date
-            </th>
-            <th>
-                Cause of Visit
-            </th>
-            <th>
-                Medicine
-            </th>
-            <th>
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Color</title>
+    <link href="~/lib/datatables/css/dataTables.bootstrap4.min.css" type="text/css" rel="stylesheet" />
+    <script src="~/lib/datatables/js/jquery.dataTables.min.js"></script>
+    <script src="~/lib/datatables/js/dataTables.bootstrap4.min.js"></script>
+    <script src="~/lib/jquery/jquery.min.js"></script>
+    <script src="//cdn.datatables.net/plug-ins/1.10.20/dataRender/datetime.js"></script>
+    <link href="//cdn.datatables.net/plug-ins/1.10.20/dataRender/datetime.js" />
 
-            </th>
-        </tr>
-        @foreach (var item in Model)
-        {
-            <tr>
-                <td>
-                    @Html.DisplayFor(m => item.RingNumber)
-                </td>
-                <td>
-                    @Html.DisplayFor(m => item.VisitDate)
-                </td>
-                <td>
-                    @Html.DisplayFor(m => item.Disease.Name)
-                </td>
-                <td>
-                    @Html.DisplayFor(m => item.Medicine)
-                </td>
+    <script type="text/javascript">
+        $(document).ready(function () {
+          
 
-                <td>
-                    <i class="far fa-list-alt">@Html.ActionLink("Details", "Details", new { id = @item.Id })</i>
-                    @if (User.IsInRole(SD.MedicalEndUser))
-                    {
-                        <i class="far fa-list-alt">@Html.ActionLink("Edit", "Edit", new { id = @item.Id })</i>
-                    }
-                </td>
-            </tr>
+   
+            $.ajax({
+                url: '/Admin/MedicalData/data',
+                method: 'get',
+                dataType: 'json',
+                success: function (data) {
+                   
+                    $('#colors').dataTable({
+                        
+                        data: data,
 
+                        columns: [
+
+                            {
+                                'data': 'ringNumber'
+                            }
+                            ,
+                            {
+                                'data': 'visitDate', 'type': 'datetime',
+                                'def': function () { return new Date(); },
+                                'format': 'M/D/YYYY',
+                                'fieldInfo': 'US style m/d/y format'
+                            }
+                            ,
+                            {
+                                'data': 'disease.name'
+                            }
+                            ,
+                            {
+                                'data': 'medicine'
+                            }
+                            ,
+                            {
+                                data: 'id', name: 'id', "render": function (data) {
+                                    return "<a class='btn btn-default btn-sm badge-secondary alert-success ' style='margin-left:5px' href='/Admin/MedicalData/Edit/" + data + "'><i class='fas fa-edit'></i> Edit</a><a class='btn btn-default btn-sm badge-info alert-info' style='margin-left:5px' href='/Admin/MedicalData/Details" + data + "'><i class='far fa-list-alt'></i> Details</a>";
+
+                                }
+                            }
+                        ]
+                    });
+                }
+            });
+        });
+        function PopupForm(url) {
+            var formDiv = $('<div/>');
+            $.get(url)
+                .done(function (response) {
+                    formDiv.html(response);
+                    Popup = formDiv.dialog({
+                        autoOpen: true,
+                        resizable: false,
+                        title: 'Add Medical Data',
+                        width: 700,
+                        height: 500,
+                        close: function () {
+                            Popup.dialog('destory').remove();
+                        }
+                    });
+                });
         }
-    </table>
-</div>
+    </script>
+</head>
+<body style="font-family:Arial">
+    <div class="border-10">
+        <div class="col-6">
+            <a class="btn btn-info" onclick="PopupForm('@Url.Action("Create","MedicalData")')"><i class="fas fa-plus"></i>&nbsp;Add</a>
+        </div>
+        <br />
+
+        <div class="alert-light">
+            @*//<div style="border:1px solid black;padding:3px;width:1200px">//*@
+            <table id="colors" class="table table-striped table-bordered" style="width:100%">
+                <thead>
+                    <tr>
+                        <th>
+                            Ring Number
+                        </th>
+                        <th>
+                            Visit Date
+                        </th>
+                        <th>
+                            Cause of Visit
+                        </th>
+                        <th>
+                            Medicine
+                        </th>
+                        <th>
+                            Actions
+                        </th>
+                    </tr>
+
+                </thead>
+                <tfoot>
+                    <tr>
+                        <th>
+                            Ring Number
+                        </th>
+                        <th>
+                            Visit Date
+                        </th>
+                        <th>
+                            Cause of Visit
+                        </th>
+                        <th>
+                            Medicine
+                        </th>
+                        <th>
+                            Actions
+                        </th>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+    </div>
+
+</body>
+</html>
+
+@section Scripts{
+    <script src="~/lib/datatables/js/jquery.dataTables.min.js"></script>
+    <script src="~/lib/datatables/js/dataTables.bootstrap4.min.js"></script>
+    <script src="//cdn.datatables.net/plug-ins/1.10.20/dataRender/datetime.js"></script>
+    <link href="//cdn.datatables.net/plug-ins/1.10.20/dataRender/datetime.js" />
+
+}

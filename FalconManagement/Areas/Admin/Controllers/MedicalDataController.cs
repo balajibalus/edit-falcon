@@ -34,6 +34,12 @@ namespace FalconManagement.Areas.Admin.Controllers
             };
         }
         [HttpGet]
+        public IActionResult Data()
+        {
+            var data = _db.GetData();
+            return new JsonResult(data);
+        }
+        [HttpGet]
         public IActionResult Index()
         {
             var data = _db.GetData();

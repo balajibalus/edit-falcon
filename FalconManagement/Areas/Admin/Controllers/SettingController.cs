@@ -23,7 +23,10 @@ namespace FalconManagement.Areas.Admin.Controllers
         {
             _db = db;
         }
-
+        public IActionResult G()
+        {
+            return View();
+        }
         #region Color
         [HttpGet]
         public IActionResult Colors()
@@ -61,13 +64,16 @@ namespace FalconManagement.Areas.Admin.Controllers
         [HttpPost]
         public IActionResult Create(Colors colors)
         {
-            if (ModelState.IsValid)
+            var name = _db.GetColors().FindAll(a => a.Name == colors.Name).Count();
+
+            if (name==0)
             {
                 _db.AddColor(colors);
 
                 return RedirectToAction(nameof(Colors));
             }
-            return View(colors);
+            ViewBag.Message = "already exists";
+            return View();
         }
 
         [HttpGet]
@@ -117,13 +123,22 @@ namespace FalconManagement.Areas.Admin.Controllers
         [HttpPost]
         public IActionResult AddCountry(Country country)
         {
-            if (ModelState.IsValid)
-            {
-                _db.AddCountry(country);
+            var name = _db.Countries().FindAll(a => a.Name == country.Name).Count();
 
-                return RedirectToAction(nameof(Country));
+            if (name == 0)
+            {
+                if (ModelState.IsValid)
+                {
+                    _db.AddCountry(country);
+
+                    return RedirectToAction(nameof(Country));
+                }
             }
-            return View(country);
+            ViewBag.Message = "already exists";
+            return View();
+
+
+          
         }
         [HttpGet]
         public IActionResult EditCountry(int id)
@@ -186,13 +201,20 @@ namespace FalconManagement.Areas.Admin.Controllers
         [HttpPost]
         public IActionResult AddStatus(Status status)
         {
-            if (ModelState.IsValid)
-            {
-                _db.AddStatus(status);
+            var name = _db.GetStatuses().FindAll(a => a.Name == status.Name).Count();
 
-                return RedirectToAction(nameof(Status));
+            if (name == 0)
+            {
+                if (ModelState.IsValid)
+                {
+                    _db.AddStatus(status);
+
+                    return RedirectToAction(nameof(Status));
+                }
             }
-            return View(status);
+            ViewBag.Message = "already exists";
+            return View();
+
         }
         [HttpGet]
         public IActionResult EditStatus(int id)
@@ -256,14 +278,21 @@ namespace FalconManagement.Areas.Admin.Controllers
         [HttpPost]
         public IActionResult AddDisease(Disease disease)
         {
-            if (ModelState.IsValid)
+            var name = _db.GetDiseases().FindAll(a => a.Name == disease.Name).Count();
+
+            if (name == 0)
             {
+                if (ModelState.IsValid)
+                {
 
-                _db.AddDisease(disease);
+                    _db.AddDisease(disease);
 
-                return RedirectToAction(nameof(GetDisease));
+                    return RedirectToAction(nameof(GetDisease));
+                }
             }
-            return View(disease);
+            ViewBag.Message = "already exists";
+            return View();
+
         }
         [HttpGet]
         public IActionResult EditDisease(int id)
@@ -326,8 +355,17 @@ namespace FalconManagement.Areas.Admin.Controllers
         [HttpPost]
         public IActionResult AddScientificNames(ScientificName scientific)
         {
-            _db.AddName(scientific);
-            return RedirectToAction(nameof(GetScientificNames));
+            var name = _db.GetColors().FindAll(a => a.Name == scientific.Name).Count();
+
+            if (name == 0)
+            {
+                _db.AddName(scientific);
+                return RedirectToAction(nameof(GetScientificNames));
+            }
+            ViewBag.Message = "already exists";
+            return View();
+
+           
         }
         public IActionResult EditName(int id)
         {
@@ -388,8 +426,17 @@ namespace FalconManagement.Areas.Admin.Controllers
         [HttpPost]
         public IActionResult AddSeason(Seasons seasons)
         {
-            _db.AddSeasons(seasons);
-            return RedirectToAction(nameof(GetSeasons));
+            var name = _db.GetSeasons().FindAll(a => a.Name == seasons.Name).Count();
+
+            if (name == 0)
+            {
+                _db.AddSeasons(seasons);
+
+                return RedirectToAction(nameof(GetSeasons));
+            }
+            ViewBag.Message = "already exists";
+            return View();
+
         }
        
         [HttpGet]
@@ -474,10 +521,18 @@ namespace FalconManagement.Areas.Admin.Controllers
         [HttpPost]
         public IActionResult AddSpecies(Species species)
         {
-            _db.AddSpecies(species);
 
-            return RedirectToAction(nameof(Species));
-        }
+            var name = _db.GetSpecies().FindAll(a => a.Name == species.Name).Count();
+
+            if (name == 0)
+            {
+                _db.AddSpecies(species);
+
+                return RedirectToAction(nameof(Species));
+            }
+            ViewBag.Message = "already exists";
+            return View();
+                    }
         [HttpGet]
         public IActionResult EditSpecies(int id)
         {

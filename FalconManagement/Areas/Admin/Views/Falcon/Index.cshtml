@@ -17,56 +17,57 @@
                 dataType: 'json',
                 success: function (data) {
                     $('#colors').dataTable({
+                             
                         data: data,
 
                         columns: [
 
                             {
-                                'data': 'ringNumber'
+                                'data': 'ringNumber', 'margin': 'auto'
                             }
                             ,
                             {
-                                'data': 'chipNumber'
+                                'data': 'chipNumber', 'margin': 'auto'
                             }
                             ,
                             {
-                                'data': 'species.name'
+                                'data': 'species.name', 'margin': 'auto'
                             }
                             ,
                             {
-                                'data': 'scientificName.name'
+                                'data': 'scientificName.name', 'margin': 'auto'
                             }
                             ,
                             {
-                                'data': 'gender.name'
+                                'data': 'gender.name', 'margin': 'auto'
                             }
                             ,
                             {
-                                'data': 'status.name'
+                                'data': 'status.name', 'margin': 'auto'
                             }
                             ,
                             {
-                                'data': 'colors.name'
+                                'data': 'colors.name', 'margin': 'auto'
                             }
                             ,
                             {
-                                'data': 'width'
+                                'data': 'width', 'margin': 'auto'
                             }
                             ,
                             {
-                                'data': 'length'
+                                'data': 'length', 'margin': 'auto'
                             }
                             ,
                             {
-                                'data': 'weight'
+                                'data': 'weight', 'margin': 'auto'
                             }
                             ,
                             {
-                                'data': 'seasons.name'
+                                'data': 'seasons.name', 'margin': 'auto'
                             }
                             ,
                             {
-                                'data': 'giftedTo'
+                                'data': 'giftedTo', 'margin': 'auto'
                             }
                             ,
                             {
@@ -79,6 +80,7 @@
                     });
                 }
             });
+            
         });
         function PopupForm(url) {
             var formDiv = $('<div/>');
@@ -113,25 +115,25 @@
                     <tr>
 
                         <th>Ring Number</th>
-                    <th>
-                        Chip Number
-                    </th>
-                    <th>
-                        Falcon Species
-                    </th>
-                    <th>
-                        Scientific Name
-                    </th>
-                    <th>
-                        Gender
-                    </th>
-                    <th>Status </th>
-                    <th>Color</th>
-                    <th>Width</th>
-                    <th>Length</th>
-                    <th>Weight</th>
-                    <th>Season</th>
-                    <th>Gifted To</th>
+                        <th>
+                            Chip Number
+                        </th>
+                        <th>
+                            Falcon Species
+                        </th>
+                        <th>
+                            Scientific Name
+                        </th>
+                        <th>
+                            Gender
+                        </th>
+                        <th>Status </th>
+                        <th>Color</th>
+                        <th>Width</th>
+                        <th>Length</th>
+                        <th>Weight</th>
+                        <th>Season</th>
+                        <th>Gifted To</th>
                     </tr>
 
 
@@ -172,5 +174,6 @@
 @section Scripts{
     <script src="~/lib/datatables/js/jquery.dataTables.min.js"></script>
     <script src="~/lib/datatables/js/dataTables.bootstrap4.min.js"></script>
+  
 
 }
