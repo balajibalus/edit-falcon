@@ -27,7 +27,8 @@
                             ,
                             {
                                 data: 'id', name: 'id', "render": function (data) {
-                                    return "<a class='btn btn-default btn-sm badge-secondary alert-success ' style='margin-left:5px' href='/Admin/Setting/EditCountry/" + data + "'><i class='fas fa-pencil'></i> Edit</a><a class='btn btn-default btn-sm badge-info alert-info ' style='margin-left:5px' href='/Admin/Setting/CountryDetails/" + data + "'><i class='far fa-list-alt'></i> Details</a><a class='btn btn-danger btn-sm ' style='margin-left:5px' href='/Admin/Setting/CountryDelete/" + data + "'><i class='fa fa-trash'></i> Delete</a>";
+                                   // return "<a class='btn btn-default btn-sm badge-secondary alert-success ' style='margin-left:5px' href='/Admin/Setting/EditCountry/" + data + "'><i class='fas fa-pencil'></i> Edit</a><a class='btn btn-default btn-sm badge-info alert-info ' style='margin-left:5px' href='/Admin/Setting/CountryDetails/" + data + "'><i class='far fa-list-alt'></i> Details</a><a class='btn btn-danger btn-sm ' style='margin-left:5px' href='/Admin/Setting/CountryDelete/" + data + "'><i class='fa fa-trash'></i> Delete</a>";
+                                    return "<a class='btn btn-default btn-sm badge-info alert-info' style='margin-left:5px'  onclick=PopupForm('/Admin/Setting/CountryDetails/" + data + "')><i class='far fa-list-alt'></i> Details</a><a class='btn btn-default btn-sm badge-secondary alert-success ' style='margin-left:5px' onclick=PopupForm('/Admin/Setting/EditCountry/" + data + "')><i class='fas fa-edit'></i> Edit</a><a class='btn btn-danger btn-sm ' style='margin-left:5px' href='/Admin/Setting/CountryDelete/" + data + "' onclick=ok()><i class='fa fa-trash'></i> Delete</a>";
 
                                 }
                             }
@@ -44,7 +45,7 @@
                     Popup = formDiv.dialog({
                         autoOpen: true,
                         resizable: false,
-                        title: 'Add Country',
+                        title: 'Country',
                         width: 700,
                         height: 500,
                         close: function () {
@@ -52,6 +53,9 @@
                         }
                     });
                 });
+        }
+        function ok() {
+            (confirm('Are you confirm to Delete this'))
         }
     </script>
 </head>

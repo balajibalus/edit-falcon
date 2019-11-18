@@ -46,7 +46,9 @@ namespace FalconManagement.Areas.Admin.Controllers
         public IActionResult Deleted(int id)
         {
             var clr = _db.GetColor(id);
-            return View(clr);
+           // return View(clr);
+            _db.Deletes(clr);
+           return RedirectToAction(nameof(Colors));
         }
         [HttpPost]
         public IActionResult Deleted(Colors colors)
@@ -167,7 +169,10 @@ namespace FalconManagement.Areas.Admin.Controllers
         public IActionResult CountryDelete(int id)
         {
             var country = _db.GetCountry(id);
-            return View(country);
+            // return View(country);
+            _db.DeleteCountry(country);
+
+            return RedirectToAction(nameof(Country));
         }
         [HttpPost]
         public IActionResult CountryDelete(Country country)
@@ -242,7 +247,10 @@ namespace FalconManagement.Areas.Admin.Controllers
         public IActionResult StatusDelete(int id)
         {
             var status = _db.GetStatus(id);
-            return View(status);
+            // return View(status);
+            _db.DeleteStatus(status);
+
+            return RedirectToAction(nameof(Status));
         }
         [HttpPost]
         public IActionResult StatusDelete(Status status)
@@ -320,7 +328,10 @@ namespace FalconManagement.Areas.Admin.Controllers
         public IActionResult DiseaseDelete(int id)
         {
             var disease = _db.GetDisease(id);
-            return View(disease);
+            // return View(disease);
+            _db.DeleteDisease(disease);
+
+            return RedirectToAction(nameof(GetDisease));
         }
         [HttpPost]
         public IActionResult DiseaseDelete(Disease disease)
@@ -391,8 +402,11 @@ namespace FalconManagement.Areas.Admin.Controllers
         [HttpGet]
         public IActionResult NameDelete(int id)
         {
-            var name = _db.GetScientific(id);
-            return View(name);
+            var scientific = _db.GetScientific(id);
+            _db.DeleteScientificName(scientific);
+
+            return RedirectToAction(nameof(GetScientificNames));
+           
         }
         [HttpPost]
         public IActionResult NameDelete(ScientificName scientific)
@@ -465,7 +479,10 @@ namespace FalconManagement.Areas.Admin.Controllers
         public IActionResult SeasonDelete(int id)
         {
             var season = _db.GetSeason(id);
-            return View(season);
+            // return View(season);
+            _db.DeleteSeason(season);
+
+            return RedirectToAction(nameof(GetSeasons));
         }
         [HttpPost]
         public IActionResult SeasonDelete(Seasons seasons)
@@ -559,7 +576,10 @@ namespace FalconManagement.Areas.Admin.Controllers
         public IActionResult SpeciesDelete(int id)
         {
             var species = _db.GetSpecie(id);
-            return View(species);
+            // return View(species);
+            _db.DeleteSpecies(species);
+
+            return RedirectToAction(nameof(Species));
         }
         [HttpPost]
         public IActionResult SpeciesDelete(Species species)

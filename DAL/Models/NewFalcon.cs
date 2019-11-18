@@ -54,9 +54,11 @@ namespace DAL.Models
         public virtual Seasons Seasons { get; set; }
 
 
-
+        [Required]
         public string GiftedTo { get; set; }
+        [Required]
         public string FrontImage { get; set; }
+        [Required]
         public string BackImage { get; set; }
         public string Notes { get; set; }
         public string Documents { get; set; }

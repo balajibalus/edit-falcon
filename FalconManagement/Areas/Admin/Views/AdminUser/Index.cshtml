@@ -21,37 +21,46 @@
             </th>
             <th>Last Name</th>
             <th>Phone Number</th>
+            <th>Email</th>
             <th>Disabled</th>
             <th></th>
             <th></th>
         </tr>
         @foreach (var item in Model)
         {
-            <tr>
-                <td>
-                    @Html.DisplayFor(m => item.FirstName)
-                </td>
-                <td>
-                    @Html.DisplayFor(m => item.LastName)
-                </td>
-                <td>
-                    @Html.DisplayFor(m => item.PhoneNumber)
-                </td>
-                <td>
-                    @if (item.LockoutEnd != null && item.LockoutEnd > DateTime.Now)
-                    {
-                        <label>Disabled</label>
-                    }
-                </td>
-                <td>
-                    @if (item.LockoutEnd == null || item.LockoutEnd < DateTime.Now)
-                    {
-                        <i class="fas fa-edit">@Html.ActionLink("Edit", "Edit", new { id = @item.Id })</i>
-                        <i class="fas fa-trash-alt">@Html.ActionLink("Delete", "Delete", new { id = @item.Id })</i>
-                    }
-                </td>
-                <td></td>
-            </tr>
+        <tr>
+            <td>
+                @Html.DisplayFor(m => item.FirstName)
+            </td>
+            <td>
+                @Html.DisplayFor(m => item.LastName)
+            </td>
+            <td>
+                @Html.DisplayFor(m => item.PhoneNumber)
+            </td>
+            <td>
+           
+                    
+                  @Html.DisplayFor(m=>item.Email)               
+
+
+              
+            </td>
+            <td>
+                @if (item.LockoutEnd != null && item.LockoutEnd > DateTime.Now)
+                {
+                    <label>Disabled</label>
+                }
+            </td>
+            <td>
+                @if (item.LockoutEnd == null || item.LockoutEnd < DateTime.Now)
+                {
+                    <i class="fas fa-edit">@Html.ActionLink("Edit", "Edit", new { id = @item.Id })</i>
+                    <i class="fas fa-trash-alt">@Html.ActionLink("Delete", "Delete", new { id = @item.Id })</i>
+                }
+            </td>
+            <td></td>
+        </tr>
         }
     </table>
 </div>

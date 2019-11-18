@@ -165,11 +165,12 @@
                     }
 
                 </td>
+                <td></td>
                 <td>
-
-                    <i class="fas fa-edit">@Html.ActionLink("Edit", "EditSeasons", new { id = @item.Id })</i>
                     <i class="far fa-list-alt">@Html.ActionLink("Details", "SeasonsDetails", new { id = @item.Id })</i>
-                    <i class="far fa-list-alt">@Html.ActionLink("Delete", "SeasonDelete", new { id = @item.Id })</i>
+                    <i class="fas fa-edit">@Html.ActionLink("Edit", "EditSeasons", new { id = @item.Id })</i>
+                    <i class="far fa-list-alt" onclick="return confirm(' you want to delete this record?');">@Html.ActionLink("Delete", "SeasonDelete", new { id = @item.Id })</i>
+                   
 
                 </td>
             </tr>

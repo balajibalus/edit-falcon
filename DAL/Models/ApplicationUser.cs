@@ -15,10 +15,10 @@ namespace DAL.Models
         public string LastName { get; set; }
 
         [NotMapped]
-        public bool IsSuperAdmin { get; set; }
+        public string IsSuperAdmin { get; set; }
         [NotMapped]
-        public bool IsMedicalAdmin { get; set; }
-        [NotMapped]
-        public bool IsTraineeAdmin { get; set; }
+        public string IsMedicalAdmin { get; set; }
+       [NotMapped]
+        public string IsTraineeAdmin { get; set; }
     }
 }

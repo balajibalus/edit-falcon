@@ -17,7 +17,7 @@
         </div>
         <br />
         <div class="form-group">
-            <input type="submit" class="btn btn-danger" asp-route-id="@Model.Id" value="Delete" />
+            <input type="submit" class="btn btn-danger" asp-route-id="@Model.Id" value="Delete"   onclick="return confirm(' you want to delete?');"/>
             <a asp-action="Colors" class="btn btn-success">Back to List</a>
         </div>
     </div>
